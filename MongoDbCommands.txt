@@ -1,0 +1,101 @@
+1. Database Commands
+
+	Create a new or switch databases 
+		use dbName
+	
+	View current Database
+		db
+	
+	Delete Database 
+		db.dropDatabase()
+
+2. Collection Commands
+	Show Collections
+		show collections
+	
+	Create a collection named 'comments'
+		db.createCollection('comments')
+	
+	Drop a collection named 'comments'
+		db.comments.drop()
+
+3. Row(Document) Commands
+	Show all Rows in a Collection
+		db.comments.find()
+		
+	Show all Rows in a Collection (Prettified)
+		db.comments.find().pretty()
+		
+	Find the first row matching the object
+		db.comments.findOne({name: 'Amit'})
+		
+	Insert One Row
+		db.comments.insert({
+		'name': 'Amit',
+		'lang': 'JavaScript',
+		'year': 5
+	 })
+	 
+	Delete Row 
+	db.comments.remove({name: 'Amit lal'})
+
+	Insert many Rows
+		db.comments.insertMany([{
+		'name': 'Rajesh',
+		'lang': 'JavaScript',
+		'year': 8
+		}, 
+		{'name': 'Geeta',
+		'lang': 'Python',
+		'year': 2
+		},
+		{'name': 'Ved Prakash',
+		'lang': 'Java',
+		'year': 3
+	}])
+	
+	Search in a MongoDb Database
+		db.comments.find({lang:'Python'})
+
+	Limit the number of rows in output
+		db.comments.find().limit(2)
+		
+	Count the number of rows in the output
+		db.comments.find().count()
+
+	Update a row
+		db.comments.update({name: 'Amit'},
+		{'name': 'Amit Lal',
+			'lang': 'JavaScript',
+			'year': 51
+		}, {upsert: true})
+	
+	Note: - Upsert is a combination of update and insert. Upsert performs two functions:
+			Update data if there is a matching document. Insert a new document in case there is no document matches the query criteria.
+			
+
+	Mongodb Increment Operator
+		db.comments.update({name: 'Amit'},
+		{$inc:{
+			year: 2
+		}})
+	The $inc operator in MongoDB allows users to increment or add a value of a given field by a given value. This operator accepts both positive and negative values for addition. Moreover, if a given field does not exist, then the $inc operator creates the field and attaches the specified value to it. when a null value is provided, the operator throws an error.
+	
+	Mongodb Rename Operator
+	db.comments.update({name: 'Amit'},
+	{$rename:{
+		year: 'member'
+	}})
+	
+	Less than/Greater than/ Less than or Eq/Greater than or Eq
+	db.comments.find({year: {$lt: 90}})
+	
+		db.comments.find({year: {$lte: 90}})
+
+		db.comments.find({year: {$gt: 90}})
+
+		db.comments.find({year: {$gte: 90}})
+
+
+	To delete all records of a collection in MongoDB shell, use the remove() method.
+		db.yourCollectionName.remove({});
