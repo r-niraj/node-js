@@ -8,7 +8,7 @@ let count = 0;
 event.on('countHit', ()=>{
     count++;
     console.log(`Api Hit count ${count}`);
-})
+});
 
 app.get("/", (req,res)=>{
     res.send('Api hit');

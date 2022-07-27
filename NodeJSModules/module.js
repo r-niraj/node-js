@@ -9,7 +9,6 @@ function average(arr){
 // exporting module
 module.exports = average;
 
-
 // exporting object module 
 
 // module.exports = {
